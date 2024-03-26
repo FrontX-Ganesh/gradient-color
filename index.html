@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="button-list">
+            <button type="button" class="btn-1" id="btn-1">#FC354C</button>
+            <button type="button" class="btn-2" id="btn-2">#0ABFBC</button>
+        </div>
+        <div class="gradient-css" id="gradient-css">
+            background: linear-gradient(to right, #FC354C, #0ABFBC);
+        </div>
+    </body>
+    <script>
+        const btn1 = document.getElementById('btn-1');
+        const btn2 = document.getElementById('btn-2');
+        const gradientCss = document.getElementById('gradient-css');
+        let color1= "#FC354C";
+        let color2= "#0ABFBC";
+
+        btn1.addEventListener('click', () => {
+            color1 = createColorCode()
+            btn1.innerText = color1;
+            btn1.style.backgroundColor = color1;
+            changeBackgroundColorOrText()
+        })
+
+        btn2.addEventListener('click', () => {
+            color2 = createColorCode()
+            btn2.innerText = color2;
+            btn2.style.backgroundColor = color2
+            changeBackgroundColorOrText()
+        })
+
+        const changeBackgroundColorOrText = () => {
+            gradientCss.textContent = `background-image: linear-gradient(to right, ${color1}, ${color2})`;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`
+        }
+
+        const createColorCode = () => {
+           const hexCodes = "0123456789abcdef";
+            let createColor = '';
+            for(i = 0; i < 6; i++){
+                createColor += hexCodes[Math.floor(Math.random() * 16)]
+            }
+            createColor = `#${createColor}`;
+            return createColor
+        }
+
+        gradientCss.addEventListener('click', () => {
+            navigator.clipboard.writeText(gradientCss.textContent);
+        })
+    </script>
+</html>
